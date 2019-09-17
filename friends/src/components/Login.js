@@ -1,13 +1,15 @@
 import React, { useState } from "react";
 import { axiosWithAuth } from "../utils/axiosWithAuth";
+import "../App.css";
 
 const Login = props => {
-  console.log("Login", props);
+  //   console.log("Login", props);
   const [credentials, setCredentials] = useState({
     username: "",
     password: ""
   });
 
+  //   console.log("Cred", credentials);
   const handleChange = e => {
     setCredentials({
       ...credentials,

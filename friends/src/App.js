@@ -1,10 +1,11 @@
 import React from "react";
 import "./App.css";
-import { NavLink, Switch, Route } from "react-router-dom";
+import { Switch, Route } from "react-router-dom";
 
 import Header from "./components/Header";
 import Main from "./components/Main";
 import Login from "./components/Login";
+import Friends from "./components/Friends";
 
 function App() {
   return (
@@ -12,7 +13,8 @@ function App() {
       <Header />
       <Switch>
         <Route exact path="/" component={Main} />
-        <Route path="/login" component={Login} />
+        <Route exact path="/login" component={Login} />
+        <Route exact path="/friends" component={Friends} />
       </Switch>
     </div>
   );
