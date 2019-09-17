@@ -9,3 +9,17 @@ a {
 h2 {
   color: red;
 }
+.friendsList {
+  display: flex;
+  flex-wrap: wrap;
+  width: 80%;
+  margin: 0px auto;
+}
+.card {
+  width: 300px;
+  background: rgba(255, 0, 0, 0.2);
+  border: 1px solid red;
+  border-radius: 15px;
+  box-shadow: 3px 3px #aaa;
+  margin: 10px;
+}
