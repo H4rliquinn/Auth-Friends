@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { axiosWithAuth } from "../utils/axiosWithAuth";
 import "../App.css";
 
@@ -14,33 +14,52 @@ const FriendForm = props => {
   };
 
   const add = e => {
-    e.preventDefault();
-    axiosWithAuth()
-      .post("/friends", props.newFriend)
-      .then(res => {
-        console.log("ADD", res.data);
-        props.setnewFriend({
-          name: "",
-          age: "",
-          email: ""
-        });
-        props.setNewGet(true);
-      })
-      .catch(err => console.log(err));
+    if (props.edit) {
+      e.preventDefault();
+      const { id, ...rest } = props.newFriend;
+      axiosWithAuth()
+        .put("/friends/" + props.newFriend.id, { ...rest })
+        .then(res => {
+          console.log("COMMIT-EdIT", res.data);
+          props.setnewFriend({
+            id: "",
+            name: "",
+            age: "",
+            email: ""
+          });
+          props.setNewGet(true);
+        })
+        .catch(err => console.log(err));
+    } else {
+      e.preventDefault();
+      axiosWithAuth()
+        .post("/friends", props.newFriend)
+        .then(res => {
+          console.log("ADD", res.data);
+          props.setnewFriend({
+            name: "",
+            age: "",
+            email: ""
+          });
+          props.setNewGet(true);
+        })
+        .catch(err => console.log(err));
+    }
   };
 
   return (
     <div>
       <form onSubmit={add}>
+        <input type="hidden" name="id" value={props.newFriend.id} />
         <input
-          type="name"
+          type="text"
           name="name"
           value={props.newFriend.name}
           onChange={handleChange}
           placeholder="name"
         />
         <input
-          type="age"
+          type="text"
           name="age"
           value={props.newFriend.age}
           onChange={handleChange}
@@ -53,7 +72,11 @@ const FriendForm = props => {
           onChange={handleChange}
           placeholder="email"
         />
-        <button>Add Friend</button>
+        {props.edit ? (
+          <button>Edit Friend</button>
+        ) : (
+          <button>Add Friend</button>
+        )}
       </form>
     </div>
   );

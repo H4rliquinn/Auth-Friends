@@ -9,6 +9,7 @@ const Friends = props => {
   const [newGet, setNewGet] = useState();
   const [edit, setEdit] = useState(false);
   const [newFriend, setnewFriend] = useState({
+    id: "",
     name: "",
     age: "",
     email: ""
@@ -28,11 +29,18 @@ const Friends = props => {
   return (
     <div className="friends">
       <h1>Welcome to the Friends area!</h1>
-      <FriendsList friends={friends} setNewGet={setNewGet} setEdit={setEdit} />
+      <FriendsList
+        friends={friends}
+        setNewGet={setNewGet}
+        setEdit={setEdit}
+        newFriend={newFriend}
+        setnewFriend={setnewFriend}
+      />
       <FriendForm
         setNewGet={setNewGet}
         newFriend={newFriend}
         setnewFriend={setnewFriend}
+        edit={edit}
       />
     </div>
   );

@@ -5,12 +5,17 @@ import { axiosWithAuth } from "../utils/axiosWithAuth";
 const Friends = props => {
   const editFriend = id => {
     axiosWithAuth()
-      .delete("/friends/" + id)
+      .get("/friends/" + id)
       .then(res => {
-        console.log("ADD", res.data);
-        props.setNewGet(true);
+        console.log("EDIT", res.data);
+        props.setnewFriend({
+          name: res.data.name,
+          age: res.data.age,
+          email: res.data.email
+        });
       })
       .catch(err => console.log(err));
+    props.setEdit(true);
   };
 
   const deleteFriend = id => {
