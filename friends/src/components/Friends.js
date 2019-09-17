@@ -6,8 +6,10 @@ import FriendForm from "./FriendForm";
 
 const Friends = props => {
   const [friends, setFriends] = useState([]);
+  const [newGet, setNewGet] = useState();
 
   useEffect(() => {
+    setNewGet(false);
     axiosWithAuth()
       .get("/friends")
       .then(res => {
@@ -15,13 +17,13 @@ const Friends = props => {
         setFriends(res.data);
       })
       .catch(err => console.log(err));
-  }, [friends]);
+  }, [newGet]);
 
   return (
     <div className="friends">
       <h1>Welcome to the Friends area!</h1>
-      <FriendsList friends={friends} />
-      <FriendForm setFriends={setFriends} />
+      <FriendsList friends={friends} setNewGet={setNewGet} />
+      <FriendForm setNewGet={setNewGet} />
     </div>
   );
 };

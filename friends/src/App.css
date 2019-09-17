@@ -23,3 +23,17 @@ h2 {
   box-shadow: 3px 3px #aaa;
   margin: 10px;
 }
+.buttonBox {
+  display: flex;
+  justify-content: flex-end;
+}
+.deleteButton {
+  background: white;
+  border: 1px solid black;
+  font-weight: bold;
+  box-shadow: 1px 1px;
+  width: 20px;
+  height: 20px;
+  line-height: 20px;
+  margin: 10px 10px;
+}

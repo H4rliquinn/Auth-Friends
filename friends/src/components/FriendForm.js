@@ -29,7 +29,7 @@ const FriendForm = props => {
           age: "",
           email: ""
         });
-        props.setFriends([]);
+        props.setNewGet(true);
       })
       .catch(err => console.log(err));
   };
