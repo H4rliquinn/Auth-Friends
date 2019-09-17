@@ -7,6 +7,12 @@ import FriendForm from "./FriendForm";
 const Friends = props => {
   const [friends, setFriends] = useState([]);
   const [newGet, setNewGet] = useState();
+  const [edit, setEdit] = useState(false);
+  const [newFriend, setnewFriend] = useState({
+    name: "",
+    age: "",
+    email: ""
+  });
 
   useEffect(() => {
     setNewGet(false);
@@ -22,8 +28,12 @@ const Friends = props => {
   return (
     <div className="friends">
       <h1>Welcome to the Friends area!</h1>
-      <FriendsList friends={friends} setNewGet={setNewGet} />
-      <FriendForm setNewGet={setNewGet} />
+      <FriendsList friends={friends} setNewGet={setNewGet} setEdit={setEdit} />
+      <FriendForm
+        setNewGet={setNewGet}
+        newFriend={newFriend}
+        setnewFriend={setnewFriend}
+      />
     </div>
   );
 };

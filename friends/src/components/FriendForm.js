@@ -4,16 +4,11 @@ import "../App.css";
 
 const FriendForm = props => {
   //   console.log("Login", props);
-  const [newFriend, setnewFriend] = useState({
-    name: "",
-    age: "",
-    email: ""
-  });
 
   //   console.log("newFCred", newFriend);
   const handleChange = e => {
-    setnewFriend({
-      ...newFriend,
+    props.setnewFriend({
+      ...props.newFriend,
       [e.target.name]: e.target.value
     });
   };
@@ -21,10 +16,10 @@ const FriendForm = props => {
   const add = e => {
     e.preventDefault();
     axiosWithAuth()
-      .post("/friends", newFriend)
+      .post("/friends", props.newFriend)
       .then(res => {
         console.log("ADD", res.data);
-        setnewFriend({
+        props.setnewFriend({
           name: "",
           age: "",
           email: ""
@@ -40,21 +35,21 @@ const FriendForm = props => {
         <input
           type="name"
           name="name"
-          value={newFriend.name}
+          value={props.newFriend.name}
           onChange={handleChange}
           placeholder="name"
         />
         <input
           type="age"
           name="age"
-          value={newFriend.age}
+          value={props.newFriend.age}
           onChange={handleChange}
           placeholder="age"
         />
         <input
           type="email"
           name="email"
-          value={newFriend.email}
+          value={props.newFriend.email}
           onChange={handleChange}
           placeholder="email"
         />

@@ -3,6 +3,16 @@ import "../App.css";
 import { axiosWithAuth } from "../utils/axiosWithAuth";
 
 const Friends = props => {
+  const editFriend = id => {
+    axiosWithAuth()
+      .delete("/friends/" + id)
+      .then(res => {
+        console.log("ADD", res.data);
+        props.setNewGet(true);
+      })
+      .catch(err => console.log(err));
+  };
+
   const deleteFriend = id => {
     // console.log("ID", id);
     axiosWithAuth()
@@ -20,11 +30,11 @@ const Friends = props => {
         return (
           <div className="card" key={item.id}>
             <div className="buttonBox">
-              <button
-                onClick={() => deleteFriend(item.id)}
-                className="deleteButton"
-              >
-                X
+              <button onClick={() => editFriend(item.id)} className="button">
+                &#9998;
+              </button>
+              <button onClick={() => deleteFriend(item.id)} className="button">
+                &#10006;
               </button>
             </div>
             <h3>{item.name}</h3>
