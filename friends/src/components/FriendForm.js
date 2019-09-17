@@ -16,9 +16,13 @@ const FriendForm = props => {
   const add = e => {
     if (props.edit) {
       e.preventDefault();
-      const { id, ...rest } = props.newFriend;
+      console.log("ADDPROP", props);
       axiosWithAuth()
-        .put("/friends/" + props.newFriend.id, { ...rest })
+        .put("/friends/" + props.newFriend.id, {
+          name: props.newFriend.name,
+          age: props.newFriend.age,
+          email: props.newFriend.email
+        })
         .then(res => {
           console.log("COMMIT-EdIT", res.data);
           props.setnewFriend({

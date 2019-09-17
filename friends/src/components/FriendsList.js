@@ -9,6 +9,7 @@ const Friends = props => {
       .then(res => {
         console.log("EDIT", res.data);
         props.setnewFriend({
+          id: res.data.id,
           name: res.data.name,
           age: res.data.age,
           email: res.data.email
