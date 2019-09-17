@@ -6,6 +6,7 @@ import Header from "./components/Header";
 import Main from "./components/Main";
 import Login from "./components/Login";
 import Friends from "./components/Friends";
+import PrivateRoute from "./components/PrivateRoute";
 
 function App() {
   return (
@@ -14,7 +15,7 @@ function App() {
       <Switch>
         <Route exact path="/" component={Main} />
         <Route exact path="/login" component={Login} />
-        <Route exact path="/friends" component={Friends} />
+        <PrivateRoute exact path="/friends" component={Friends} />
       </Switch>
     </div>
   );
